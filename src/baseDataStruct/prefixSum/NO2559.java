@@ -29,6 +29,7 @@ sum(words[i].length) <= 3 * 10^5
 
 package baseDataStruct.prefixSum;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class NO2559 {
@@ -37,6 +38,7 @@ public class NO2559 {
         String[] words = {"a","e","i"};
         int[][] queries = {{0,2},{0,1},{2,2}};
         System.out.println(Arrays.toString(solution.vowelStrings(words, queries)));
+        System.out.println(LocalDateTime.now());
     }
     static class Solution {
         public int[] vowelStrings(String[] words, int[][] queries) {
