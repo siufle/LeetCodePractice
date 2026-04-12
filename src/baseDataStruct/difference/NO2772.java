@@ -1,0 +1,52 @@
+/*2772. 使数组中所有元素都等于零
+给你一个下标从 0 开始的整数数组 nums 和一个正整数 k 。
+你可以对数组执行下述操作 任意次 ：
+从数组中选出长度为 k 的 任一 子数组，并将子数组中每个元素都 减去 1 。
+如果你可以使数组中的所有元素都等于 0 ，返回  true ；否则，返回 false 。
+子数组 是数组中的一个非空连续元素序列。
+
+示例 1：
+输入：nums = [2,2,3,1,1,0], k = 3
+输出：true
+解释：可以执行下述操作：
+- 选出子数组 [2,2,3] ，执行操作后，数组变为 nums = [1,1,2,1,1,0] 。
+- 选出子数组 [2,1,1] ，执行操作后，数组变为 nums = [1,1,1,0,0,0] 。
+- 选出子数组 [1,1,1] ，执行操作后，数组变为 nums = [0,0,0,0,0,0] 。
+
+示例 2：
+输入：nums = [1,3,1,1], k = 2
+输出：false
+解释：无法使数组中的所有元素等于 0 。
+
+提示：
+1 <= k <= nums.length <= 10^5
+0 <= nums[i] <= 10^6
+*/
+
+package baseDataStruct.difference;
+
+public class NO2772 {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] nums = {2,2,3,1,1,0};
+        int k = 3;
+        System.out.println(solution.checkArray(nums, k));
+    }
+    static class Solution {
+        public boolean checkArray(int[] nums, int k) {
+            int n = nums.length;
+            int[] diff = new int[n + 1];
+            int sumDiff = 0;
+            for (int i = 0; i < n; i++) {
+                sumDiff += diff[i];
+                int x = nums[i];
+                x += sumDiff;
+                if(x == 0) continue;
+                if(x < 0 | i + k > n) return false;
+                sumDiff -= x;
+                diff[i + k] += x;
+            }
+            return true;
+        }
+    }
+}
