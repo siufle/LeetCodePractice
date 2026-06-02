@@ -13,19 +13,25 @@ public class LG1601 {
         Scanner sc = new Scanner(System.in);
         String a = sc.next();
         int la = a.length();
-        int[] arrA = new int[la + 1];
-        arrA[la] = 0;
-        for (int i = 0; i < la; i++) {
-            arrA[i] = a.charAt(la - 1 - i) - '0';
-        }
         String b = sc.next();
         int lb = b.length();
-        int[] arrB = new int[lb + 1];
-        arrB[lb] = 0;
-        for (int i = 0; i < lb; i++) {
-            arrB[i] = b.charAt(lb - 1 - i) - '0';
-        }
         int lc = Math.max(la, lb);
+        int[] arrA = new int[lc];
+        for(int i = 0; i < lc; i++){
+            if(i < la){
+                arrA[i] = a.charAt(la - i - 1) - '0';
+            } else {
+                arrA[i] = 0;
+            }
+        }
+        int[] arrB = new int[lc];
+        for(int i = 0; i < lc; i++){
+            if(i < lb){
+                arrB[i] = b.charAt(lb - i - 1) - '0';
+            } else {
+                arrB[i] = 0;
+            }
+        }
         int[] arrC = new int[lc + 1];
         for(int i = 0; i < lc; i++){
             arrC[i] += arrA[i] + arrB[i];
@@ -34,11 +40,11 @@ public class LG1601 {
                 arrC[i] -= 10;
             }
         }
-        do {
-            lc--;
-        } while (lc > 0 && arrC[lc] == 0);
+        while (lc > 0 && arrC[lc] == 0) lc--;
+        StringBuilder sb = new StringBuilder();
         for(int i = lc; i >= 0; i--){
-            System.out.print(arrC[i]);
+            sb.append(arrC[i]);
         }
+        System.out.println(sb);
     }
 }
