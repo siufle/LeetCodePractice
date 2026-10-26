@@ -18,7 +18,7 @@ https://www.luogu.com.cn/problem/P3370
 对于 100% 的数据：N≤10000，Mi≈1000，Mmax≤1500。
 */
 
-package hash;
+package string.hash;
 
 import java.io.IOException;
 import java.util.Arrays;
